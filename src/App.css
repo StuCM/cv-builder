@@ -1,29 +1,39 @@
-#root {
+#root, .preview {
 	display: flex;
 	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
 }
 
 .editor {
+	min-width: 340px;
 	width: 40%;
 	padding: 2rem;
 	overflow: auto;
+	flex-grow: 1;
 }
 
 .preview {
 	display: flex;
-	place-items: center;
-	border: 1px solid green;
+	align-items: flex-start;
+	justify-content: center;	
 	flex-grow: 1;
 	background-color: #ccc;
 	max-height: 100vh;
 	padding: 2rem;
+	overflow: auto;
+}
+
+@media (max-width: 1260px) {
+	.preview {
+		justify-content: flex-start;
+	}
 }
 
 .a4Page {
-	width: 210mm;
-	height: 297mm;
-	transform-origin: center;
-	transform: scale(0.75);
+	width: 21cm;
+	height: 29.7cm;
+	min-width: 21cm;
 	background-color: white;
 }
 
