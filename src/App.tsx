@@ -1,6 +1,6 @@
 import './App.css'
 import { useState } from 'react'
-import { Data } from './types/types'
+import { Data, Education } from './types/types'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
 
@@ -24,9 +24,14 @@ function App() {
     setData({ ...data, general })
   }
 
+  const handleAddEducation = (education: Education) => {
+    const newEducation = [...data.education, education]
+    setData({ ...data, education: newEducation })
+  }
+
   return (
     <>
-      <Editor generalInputChange={ handleGeneralChange } />
+      <Editor generalInputChange={ handleGeneralChange } educationAdd={ handleAddEducation } />
       <Preview {...data} />
     </>
   )

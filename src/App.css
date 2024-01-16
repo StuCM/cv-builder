@@ -6,6 +6,7 @@
 .editor {
 	width: 40%;
 	padding: 2rem;
+	overflow: auto;
 }
 
 .preview {
