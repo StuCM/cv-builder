@@ -1,10 +1,14 @@
 import GeneralInput from "./GeneralInput"
 
-function Editor() {
+interface EditorProps {
+    generalInputChange: ((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void) | undefined
+}
+
+function Editor({ generalInputChange }: EditorProps) {
     return (
         <div className="editor">
             <h1>CV Builder</h1>
-            <GeneralInput />
+            <GeneralInput onChange={ generalInputChange } />
 
         </div>
     )

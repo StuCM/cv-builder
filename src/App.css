@@ -9,9 +9,21 @@
 }
 
 .preview {
+	display: flex;
+	place-items: center;
 	border: 1px solid green;
 	flex-grow: 1;
 	background-color: #ccc;
+	max-height: 100vh;
+	padding: 2rem;
+}
+
+.a4Page {
+	width: 210mm;
+	height: 297mm;
+	transform-origin: center;
+	transform: scale(0.75);
+	background-color: white;
 }
 
 .inputs {
@@ -26,3 +38,4 @@
 	flex-direction: column;
 	margin-bottom: 1rem;
 }
+

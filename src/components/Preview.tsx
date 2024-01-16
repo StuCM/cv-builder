@@ -1,7 +1,10 @@
-function Preview() {
+import { Data } from "../types/types"
+import GeneralPreview from "./GeneralPreview"
+
+function Preview({ general, education, work }:Data) {
     return (
         <div className="preview">
-            this is a preview
+            <GeneralPreview {...general} />
         </div>
     )
 }
