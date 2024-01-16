@@ -1,0 +1,28 @@
+#root {
+	display: flex;
+	width: 100%;
+}
+
+.editor {
+	width: 40%;
+	padding: 2rem;
+}
+
+.preview {
+	border: 1px solid green;
+	flex-grow: 1;
+	background-color: #ccc;
+}
+
+.inputs {
+	border: 2px solid blue;
+	border-radius: 1.5rem;
+	padding: 2rem;
+	margin: 2rem;
+}
+
+.inputs div {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
