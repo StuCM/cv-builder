@@ -7,8 +7,10 @@ interface EducationInputProps {
 }
 
 function EducationInput({ onAdd }: EducationInputProps) {
+    const [id, setId] = useState<number>(0);
 
     const initialFormState: Education = {
+        id: 0,
         school: '',
         degree: '',
         start: '',
@@ -24,7 +26,8 @@ function EducationInput({ onAdd }: EducationInputProps) {
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onAdd(educationForm);
+        setId(id + 1);
+        onAdd({...educationForm, id: id});
         setEducationForm(initialFormState);
     }
 

@@ -7,8 +7,10 @@ interface WorkInputProps {
 }
 
 function WorkInput({ onAdd }: WorkInputProps) {
+    const [id, setId] = useState<number>(0);
 
     const initialFormState: Work = {
+        id: 0,
         company: '',
         position: '',
         start: '',
@@ -25,7 +27,8 @@ function WorkInput({ onAdd }: WorkInputProps) {
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onAdd(workForm);
+        setId(id + 1);
+        onAdd({ ...workForm, id: id });
         setWorkForm(initialFormState);
     }
 

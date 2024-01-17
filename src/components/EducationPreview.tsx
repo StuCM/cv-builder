@@ -5,6 +5,9 @@ interface EducationPreviewProps {
 }
 
 function EducationPreview({ education }: EducationPreviewProps) {
+    const convertDate = (date:string) => {
+        return new Date(date).toLocaleString('en-GB', { month: 'short', year: 'numeric' })
+    }
     return (
         <>
             <h2>Education</h2>
@@ -12,8 +15,8 @@ function EducationPreview({ education }: EducationPreviewProps) {
             <div>
                 <p>{ed.school}</p>
                 <p>{ed.degree}</p>
-                <p>{ed.start}</p>
-                <p>{ed.end}</p>
+                <p>{convertDate(ed.start)}</p>
+                <p>{convertDate(ed.end)}</p>
             </div>
             ))}
         </>

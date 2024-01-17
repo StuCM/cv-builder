@@ -81,6 +81,18 @@
 	line-height: 1.2rem;
 }
 
+.itemHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dates {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 label {
 	font-weight: 600;
 }

@@ -13,6 +13,7 @@ export interface General {
 }
 
 export interface Education {
+    id: number,
     school: string,
     degree: string,
     start: string,
@@ -20,6 +21,7 @@ export interface Education {
 }
 
 export interface Work {
+    id: number,
     company: string,
     position: string,
     start: string,
