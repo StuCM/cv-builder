@@ -6,6 +6,7 @@ export interface Data {
 
 export interface General {
     name: string,
+    position: string,
     email: string,
     phone: string,
     description: string,

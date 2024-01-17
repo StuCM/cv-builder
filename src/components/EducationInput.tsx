@@ -38,10 +38,14 @@ function EducationInput({ onAdd }: EducationInputProps) {
   return (
     <form className='inputs' onSubmit={ handleFormSubmit }>
         <h2>Education</h2>
+        <hr />
       {inputs.map((input) => (
         <Input key={input.id} {...input} />
       ))}
-      <button type='submit'>+</button>
+      <aside style={{textAlign:'right'}}>
+        <button type='submit'>+</button>
+      </aside>
+      
     </form>
   )
 }

@@ -6,11 +6,11 @@
 }
 
 .editor {
-	min-width: 340px;
+	min-width: 500px;
 	width: 40%;
 	padding: 2rem;
 	overflow: auto;
-	flex-grow: 1;
+	background-color: #eee;
 }
 
 .preview {
@@ -24,29 +24,76 @@
 	overflow: auto;
 }
 
-@media (max-width: 1260px) {
+@media (max-width: 1400px) {
 	.preview {
 		justify-content: flex-start;
 	}
 }
 
 .a4Page {
+	box-sizing: border-box;
 	width: 21cm;
 	height: 29.7cm;
 	min-width: 21cm;
 	background-color: white;
+	padding: 2rem 3rem;
+}
+
+.position {
+	font-style: italic;
+	font-weight: 400;
+	font-size: 1.75rem;
+	margin-top: 0.3rem;
+}
+
+.infoBar {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 1rem;
+	padding: 0 0.5rem;
+	border: 1px solid black;
+}
+
+.infoBar div {
+	display: flex;
+	align-items: center;
+	margin: 0.25rem 1rem;
+	padding: 0.25rem;
+	min-width: 200px;
 }
 
 .inputs {
-	border: 2px solid blue;
+	background-color: #fff;
 	border-radius: 1.5rem;
-	padding: 2rem;
+	padding: 1.5rem;
 	margin: 2rem;
 }
 
 .inputs div {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.smallFont {
+	font-size: 0.9rem;
+	line-height: 1.2rem;
+}
+
+label {
+	font-weight: 600;
+}
+
+input, textarea {
+	border: none;
+	border-radius: 0.8rem;
+	background-color: #eee;
+	padding: 0.5rem 0.75rem;
+}
+
+textarea {
+	height: 6rem;
+	resize: none;
 }
 

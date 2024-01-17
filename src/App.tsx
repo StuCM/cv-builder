@@ -8,6 +8,7 @@ function App() {
   const [data, setData] = useState<Data>({
     general: {
       name: '',
+      position: '',
       email: '',
       phone: '',
       description: '',

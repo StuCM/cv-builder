@@ -8,6 +8,7 @@ interface GeneralInputProps {
 function GeneralInput({ onChange }: GeneralInputProps) {
   const inputs: InputProps[] = [
     { type: 'text', id: 'name', onChange },
+    { type: 'text', id: 'position', onChange },
     { type: 'email', id: 'email', onChange },
     { type: 'tel', id: 'phone', onChange },
     { type: 'textarea', id: 'description', onChange },
@@ -16,6 +17,7 @@ function GeneralInput({ onChange }: GeneralInputProps) {
   return (
     <div className='inputs'>
         <h2>General Info</h2>
+        <hr />
       {inputs.map((input) => (
         <Input key={input.id} {...input} />
       ))}
