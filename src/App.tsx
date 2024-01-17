@@ -1,6 +1,6 @@
 import './App.css'
 import { useState } from 'react'
-import { Data, Education } from './types/types'
+import { Data, Education, Work } from './types/types'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
 
