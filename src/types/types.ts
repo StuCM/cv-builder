@@ -28,3 +28,8 @@ export interface Work {
     end: string,
     summary: string,
 }
+
+export interface Entry {
+    id: number,
+    name: string
+}
