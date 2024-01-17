@@ -30,9 +30,14 @@ function App() {
     setData({ ...data, education: newEducation })
   }
 
+  const handleAddWork = (work: Work) => {
+    const newWork = [...data.work, work];
+    setData({...data, work: newWork })
+  }
+
   return (
     <>
-      <Editor generalInputChange={ handleGeneralChange } educationAdd={ handleAddEducation } />
+      <Editor generalInputChange={ handleGeneralChange } educationAdd={ handleAddEducation } workAdd= { handleAddWork } />
       <Preview {...data} />
     </>
   )
