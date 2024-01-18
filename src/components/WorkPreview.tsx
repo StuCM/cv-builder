@@ -36,8 +36,7 @@ function WorkPreview({ work }: WorkPreviewProps) {
 						</div>
 						<div className='dates'>
 							<span>
-								{convertDate(job.start)} {job.start ? '-' : ''}{' '}
-								{convertDate(job.end)}
+								{convertDate(job.start)} {job.start ? '-' : ''} {convertDate(job.end)}
 							</span>
 						</div>
 					</div>

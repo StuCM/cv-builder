@@ -1,13 +1,7 @@
 import { General } from '../types/types';
 import { FaEnvelope, FaPhone } from 'react-icons/fa6';
 
-function GeneralPreview({
-	name,
-	position,
-	email,
-	phone,
-	description,
-}: General) {
+function GeneralPreview({ name, position, email, phone, description }: General) {
 	return (
 		<section>
 			<h1>{name}</h1>

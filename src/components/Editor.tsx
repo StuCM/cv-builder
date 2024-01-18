@@ -6,9 +6,7 @@ import { FaTrash } from 'react-icons/fa6';
 
 interface EditorProps {
 	handlers: {
-		generalInputChange: (
-			event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-		) => void;
+		generalInputChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 		educationAdd: (education: Education) => void;
 		educationEdit: (education: Education) => void;
 		educationDelete: MouseEventHandler;
@@ -54,11 +52,7 @@ function Editor({ handlers, data }: EditorProps) {
 		<div className='editor'>
 			<div style={{ display: 'flex' }}>
 				<h1>CV Builder</h1>
-				<button
-					className='iconButton'
-					style={{ marginLeft: 'auto' }}
-					onClick={clearData}
-				>
+				<button className='iconButton' style={{ marginLeft: 'auto' }} onClick={clearData}>
 					{' '}
 					<span style={{ marginRight: '1rem' }}>Clear All</span> <FaTrash />
 				</button>

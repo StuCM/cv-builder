@@ -3,11 +3,7 @@ import Input, { InputProps } from './Input';
 import { General } from '../types/types';
 
 interface GeneralInputProps {
-	onChange:
-		| ((
-				event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-		  ) => void)
-		| undefined;
+	onChange: ((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void) | undefined;
 	data: General;
 }
 

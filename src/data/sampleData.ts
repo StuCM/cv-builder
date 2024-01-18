@@ -4,8 +4,7 @@ export const sampleData = {
 		position: 'Software Developer',
 		email: 'john.doe@example.com',
 		phone: '123-456-7890',
-		description:
-			'A highly skilled software developer with 5 years of experience.',
+		description: 'A highly skilled software developer with 5 years of experience.',
 	},
 	education: [
 		{

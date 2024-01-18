@@ -2,9 +2,7 @@ export interface InputProps {
 	type: string;
 	id: string;
 	value?: string;
-	onChange?: (
-		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-	) => void;
+	onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 	required?: boolean;
 }
 
@@ -20,13 +18,7 @@ function Input({ type, id, value, onChange, required }: InputProps) {
 	return type === 'textarea' ? (
 		<div>
 			<label htmlFor={id}>{capitalisedId}</label>
-			<textarea
-				id={id}
-				name={id}
-				value={value}
-				onChange={onChange}
-				onKeyDown={handleKeyPress}
-			/>
+			<textarea id={id} name={id} value={value} onChange={onChange} onKeyDown={handleKeyPress} />
 		</div>
 	) : (
 		<div>

@@ -31,8 +31,7 @@ function EducationPreview({ education }: EducationPreviewProps) {
 					<div className='dates'>
 						<h4>{ed.school}</h4>
 						<span>
-							{convertDate(ed.start)} {ed.start ? '-' : ''}{' '}
-							{convertDate(ed.end)}
+							{convertDate(ed.start)} {ed.start ? '-' : ''} {convertDate(ed.end)}
 						</span>
 					</div>
 					<p style={{ marginLeft: '1rem' }}>{ed.degree}</p>

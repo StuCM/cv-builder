@@ -58,9 +58,7 @@ function App() {
 		setKey(Date.now());
 	};
 
-	const handleGeneralChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-	) => {
+	const handleGeneralChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { id, value } = e.target;
 		const general = { ...data.general, [id]: value };
 		setData({ ...data, general });
@@ -86,9 +84,7 @@ function App() {
 		return education ? education : defaultEducation;
 	};
 
-	const handleDeleteEducation: MouseEventHandler = (
-		event: React.MouseEvent<HTMLElement>,
-	) => {
+	const handleDeleteEducation: MouseEventHandler = (event: React.MouseEvent<HTMLElement>) => {
 		const id: string | undefined = event.currentTarget.closest('div')?.id;
 		if (!id) return;
 		const parsedId = parseInt(id);
@@ -116,9 +112,7 @@ function App() {
 		return work ? work : defaultWork;
 	};
 
-	const handleDeleteWork: MouseEventHandler = (
-		event: React.MouseEvent<HTMLElement>,
-	) => {
+	const handleDeleteWork: MouseEventHandler = (event: React.MouseEvent<HTMLElement>) => {
 		const id: string | undefined = event.currentTarget.closest('div')?.id;
 		if (!id) return;
 		const parsedId = parseInt(id);

@@ -43,10 +43,7 @@ function InputController<T extends Generic>({
 	const [inEdit, setInEdit] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (data)
-			setEntries(
-				data.map(item => ({ name: Object.values(item)[1], id: item.id })),
-			);
+		if (data) setEntries(data.map(item => ({ name: Object.values(item)[1], id: item.id })));
 	}, [data]);
 
 	//handles for the entry component
@@ -65,9 +62,7 @@ function InputController<T extends Generic>({
 	};
 
 	//handles for the input components
-	const handleInputChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-	) => {
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		e.preventDefault();
 		const { id, value } = e.target;
 		setForm(prevState => ({ ...prevState, [id]: value }));
@@ -100,8 +95,7 @@ function InputController<T extends Generic>({
 		required: input.required ?? false,
 	}));
 
-	const heading =
-		inputValues[0].value === 'company' ? 'Work Experience' : 'Education';
+	const heading = inputValues[0].value === 'company' ? 'Work Experience' : 'Education';
 
 	return (
 		<>
@@ -129,13 +123,7 @@ function InputController<T extends Generic>({
 				</form>
 			</section>
 			{entries.map(entry => (
-				<EntryComp
-					key={entry.id}
-					name={entry.name}
-					id={entry.id}
-					onChange={handleEdit}
-					onDelete={deleteEntry}
-				/>
+				<EntryComp key={entry.id} name={entry.name} id={entry.id} onChange={handleEdit} onDelete={deleteEntry} />
 			))}
 		</>
 	);
