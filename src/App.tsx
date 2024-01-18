@@ -1,5 +1,5 @@
 import './App.css'
-import React, { MouseEventHandler, useEffect, useState } from 'react'
+import React, { MouseEventHandler, useState } from 'react'
 import { Data, Education, Work } from './types/types'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
@@ -17,9 +17,15 @@ function App() {
     work: [],
   })
 
-  useEffect(() => {
-    console.log(data.work)
-  }, [data.work])
+  const [key, setKey] = useState<number>(Date.now())
+
+  const defaultGeneral = {
+    name: '',
+    position: '',
+    email: '',
+    phone: '',
+    description: '',
+  }
 
   const defaultEducation: Education = {
     id: 0,
@@ -36,6 +42,15 @@ function App() {
     start: '',
     end: '',
     summary: '',
+  }
+
+  const clearData = () => {
+    setData({
+      general: defaultGeneral,
+      education: [],
+      work: [],
+    })
+    setKey(Date.now())
   }
 
   const handleGeneralChange = (
@@ -112,11 +127,12 @@ function App() {
     workEdit: handleEditWork,
     workChange: handleChangeWork,
     workDelete: handleDeleteWork,
+    clearData
   }
 
   return (
     <>
-      <Editor handlers={ handlers } />
+      <Editor key={key} handlers={ handlers } />
       <Preview {...data} />
     </>
   )

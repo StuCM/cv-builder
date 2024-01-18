@@ -2,6 +2,7 @@ import GeneralInput from "./GeneralInput"
 import { Education, Work } from "../types/types"
 import InputController from "./InputController"
 import { MouseEventHandler } from "react"
+import { FaTrash } from "react-icons/fa6"
 
 interface EditorProps {
     handlers: {
@@ -14,6 +15,7 @@ interface EditorProps {
         workEdit: (work: Work) => void
         workDelete: MouseEventHandler
         workChange: (event: React.MouseEvent<HTMLButtonElement>) => Work
+        clearData: () => void
     }
 }
 
@@ -33,10 +35,13 @@ const educationInputs = [
 ]
 
 function Editor({ handlers }: EditorProps) {
-    const { generalInputChange, educationAdd, educationEdit, educationChange, educationDelete, workAdd, workEdit, workChange, workDelete } = handlers;
+    const { generalInputChange, educationAdd, educationEdit, educationChange, educationDelete, workAdd, workEdit, workChange, workDelete, clearData } = handlers;
     return (
         <div className="editor">
-            <h1>CV Builder</h1>
+            <div style={{display: 'flex'}}>
+                <h1>CV Builder</h1>
+                <button className='iconButton' style={{marginLeft: 'auto'}} onClick={ clearData }> <span style={{marginRight:'1rem'}}>Clear All</span> <FaTrash /></button>
+            </div>
             <GeneralInput onChange={ generalInputChange } />
             <InputController<Work> inputValues={ workInputs } onAdd={ workAdd } onEdit={ workEdit } onChange={ workChange} onDelete={ workDelete } />
             <InputController<Education> inputValues={ educationInputs } onAdd={ educationAdd } onEdit={ educationEdit } onChange={ educationChange } onDelete={ educationDelete } />

@@ -2,6 +2,7 @@ import { MouseEventHandler, useState } from 'react'
 import { Entry } from '../types/types'
 import Input, { InputProps } from './Input'
 import EntryComp from './Entry'
+import { FaPlus } from 'react-icons/fa6'
 
 interface InputValues {
   type: string
@@ -18,7 +19,7 @@ interface WorkInputProps<T extends Generic> {
   onDelete: MouseEventHandler<HTMLButtonElement>
 }
 
-function WorkInput<T extends Generic>({
+function InputController<T extends Generic>({
   inputValues,
   onAdd,
   onEdit,
@@ -120,7 +121,7 @@ function WorkInput<T extends Generic>({
             </aside>
           ) : (
             <aside style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button type='submit'>+</button>
+              <button type='submit'><FaPlus /></button>
             </aside>
           )}
         </form>
@@ -129,4 +130,4 @@ function WorkInput<T extends Generic>({
   )
 }
 
-export default WorkInput
+export default InputController
