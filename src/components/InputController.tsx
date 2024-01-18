@@ -78,7 +78,7 @@ function WorkInput<T extends Generic>({
     } else {
       setId(id + 1)
       onAdd({ ...form, id: id })
-      setEntries([...entries, { name: form.company, id: id }])
+      setEntries([...entries, { name: Object.values(form)[1], id: id }])
     }
     setForm(initialFormState)
   }
