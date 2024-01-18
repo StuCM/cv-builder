@@ -18,16 +18,16 @@ interface EditorProps {
 }
 
 const workInputs = [
-    { type: 'text', value: 'company' },
-    { type: 'text', value: 'position' },
+    { type: 'text', value: 'company', required: true },
+    { type: 'text', value: 'position', required: true },
     { type: 'date', value: 'start' },
     { type: 'date', value: 'end'},
     { type: 'textarea', value: 'summary'},
 ]
 
 const educationInputs = [
-    { type: 'text', value: 'school' },
-    { type: 'text', value: 'degree' },
+    { type: 'text', value: 'school', required: true },
+    { type: 'text', value: 'degree', required: true },
     { type: 'date', value: 'start' },
     { type: 'date', value: 'end'},
 ]

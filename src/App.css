@@ -93,6 +93,18 @@
 	align-items: center;
 }
 
+.entry {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 2rem;
+	padding: 1rem 1.5rem 1rem 3rem;
+	background-color: #b5b5e1;
+	border-radius: 1.5rem;
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
 label {
 	font-weight: 600;
 }

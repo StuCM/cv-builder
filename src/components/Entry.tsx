@@ -11,8 +11,11 @@ function Entry({ name, id, onChange, onDelete }: EntryProps) {
     return (
         <div className="entry" id={`${id}`}>
             <span>{ name }</span>
-            <button onClick={ onChange }>edit</button>
-            <button onClick={onDelete} >delete</button>
+            <span>
+                <button onClick={ onChange }>edit</button>
+                <button onClick={onDelete} >delete</button>
+            </span>
+            
         </div>
     )
 }

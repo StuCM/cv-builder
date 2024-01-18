@@ -6,6 +6,7 @@ import EntryComp from './Entry'
 interface InputValues {
   type: string
   value: string
+  required?: boolean
 }
 
 type Generic = { [key: string]: any }
@@ -48,6 +49,7 @@ function WorkInput<T extends Generic>({
 
   const deleteEntry = (e: React.MouseEvent<HTMLButtonElement>) => {
     const id = e.currentTarget.closest('div')?.id
+    console.log(id)
     setEntries(entries.filter((entry) => entry.id !== parseInt(id!)))
     onDelete(e)
   }
@@ -56,6 +58,7 @@ function WorkInput<T extends Generic>({
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    e.preventDefault()
     const { id, value } = e.target
     setForm((prevState) => ({ ...prevState, [id]: value }))
   }
@@ -68,6 +71,7 @@ function WorkInput<T extends Generic>({
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    e.stopPropagation()
     if (inEdit) {
       onEdit(form)
       setInEdit(false)
@@ -84,6 +88,7 @@ function WorkInput<T extends Generic>({
     id: input.value,
     value: form[input.value],
     onChange: handleInputChange,
+    required: input.required ?? false
   }))
 
   const heading = inputValues[0].value === 'company' ? 'Work Experience' : 'Education'
@@ -99,25 +104,27 @@ function WorkInput<T extends Generic>({
           onDelete={deleteEntry}
         />
       ))}
-      <form className='inputs' onSubmit={handleFormSubmit}>
+      <section className='inputs'>
         <h2>{ heading }</h2>
-        <hr />
-        {inputs.map((input) => (
-          <Input key={input.id} {...input} />
-        ))}
-        {inEdit ? (
-          <aside style={{ textAlign: 'right' }}>
-            <button type='button' onClick={cancelEdit}>
-              Cancel
-            </button>
-            <button type='submit'>Save</button>
-          </aside>
-        ) : (
-          <aside style={{ textAlign: 'right' }}>
-            <button type='submit'>+</button>
-          </aside>
-        )}
-      </form>
+          <hr />
+        <form onSubmit={handleFormSubmit}>
+          {inputs.map((input) => (
+            <Input key={input.id} {...input} />
+          ))}
+          {inEdit ? (
+            <aside style={{ textAlign: 'right' }}>
+              <button type='button' onClick={cancelEdit}>
+                Cancel
+              </button>
+              <button type='submit'>Save</button>
+            </aside>
+          ) : (
+            <aside style={{ textAlign: 'right' }}>
+              <button type='submit'>+</button>
+            </aside>
+          )}
+        </form>
+      </section>
     </>
   )
 }
