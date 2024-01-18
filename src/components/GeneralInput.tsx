@@ -1,17 +1,19 @@
 import React from 'react'
 import Input, { InputProps } from './Input'
+import { General } from '../types/types'
 
 interface GeneralInputProps {
     onChange: ((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void) | undefined
+    data: General
 }
 
-function GeneralInput({ onChange }: GeneralInputProps) {
+function GeneralInput({ onChange, data }: GeneralInputProps) {
   const inputs: InputProps[] = [
-    { type: 'text', id: 'name', onChange },
-    { type: 'text', id: 'position', onChange },
-    { type: 'email', id: 'email', onChange },
-    { type: 'tel', id: 'phone', onChange },
-    { type: 'textarea', id: 'description', onChange },
+    { type: 'text', id: 'name', value: data.name, onChange },
+    { type: 'text', id: 'position', value: data.position, onChange },
+    { type: 'email', id: 'email', value: data.email, onChange },
+    { type: 'tel', id: 'phone', value: data.phone, onChange },
+    { type: 'textarea', id: 'description', value: data.description, onChange },
   ]
 
   return (

@@ -1,5 +1,5 @@
 import GeneralInput from "./GeneralInput"
-import { Education, Work } from "../types/types"
+import { Data, Education, Work } from "../types/types"
 import InputController from "./InputController"
 import { MouseEventHandler } from "react"
 import { FaTrash } from "react-icons/fa6"
@@ -17,6 +17,7 @@ interface EditorProps {
         workChange: (event: React.MouseEvent<HTMLButtonElement>) => Work
         clearData: () => void
     }
+    data: Data
 }
 
 const workInputs = [
@@ -34,7 +35,7 @@ const educationInputs = [
     { type: 'date', value: 'end'},
 ]
 
-function Editor({ handlers }: EditorProps) {
+function Editor({ handlers, data }: EditorProps) {
     const { generalInputChange, educationAdd, educationEdit, educationChange, educationDelete, workAdd, workEdit, workChange, workDelete, clearData } = handlers;
     return (
         <div className="editor">
@@ -42,9 +43,9 @@ function Editor({ handlers }: EditorProps) {
                 <h1>CV Builder</h1>
                 <button className='iconButton' style={{marginLeft: 'auto'}} onClick={ clearData }> <span style={{marginRight:'1rem'}}>Clear All</span> <FaTrash /></button>
             </div>
-            <GeneralInput onChange={ generalInputChange } />
-            <InputController<Work> inputValues={ workInputs } onAdd={ workAdd } onEdit={ workEdit } onChange={ workChange} onDelete={ workDelete } />
-            <InputController<Education> inputValues={ educationInputs } onAdd={ educationAdd } onEdit={ educationEdit } onChange={ educationChange } onDelete={ educationDelete } />
+            <GeneralInput onChange={ generalInputChange } data={data.general} />
+            <InputController<Work> data={data.work} inputValues={ workInputs } onAdd={ workAdd } onEdit={ workEdit } onChange={ workChange} onDelete={ workDelete } />
+            <InputController<Education> data={data.education} inputValues={ educationInputs } onAdd={ educationAdd } onEdit={ educationEdit } onChange={ educationChange } onDelete={ educationDelete } />
         </div>
     )
 }

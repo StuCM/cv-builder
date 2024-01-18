@@ -138,7 +138,7 @@ function App() {
 
   return (
     <>
-      <Editor key={key} handlers={ handlers } />
+      <Editor key={key} data={data} handlers={ handlers } />
       <Preview {...data} />
     </>
   )

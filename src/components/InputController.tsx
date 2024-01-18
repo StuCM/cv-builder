@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react'
+import { MouseEventHandler, useEffect, useState } from 'react'
 import { Entry } from '../types/types'
 import Input, { InputProps } from './Input'
 import EntryComp from './Entry'
@@ -17,6 +17,7 @@ interface WorkInputProps<T extends Generic> {
   onEdit: (item: T) => void
   onChange: (event: React.MouseEvent<HTMLButtonElement>) => T
   onDelete: MouseEventHandler<HTMLButtonElement>
+  data: T[]
 }
 
 function InputController<T extends Generic>({
@@ -25,6 +26,7 @@ function InputController<T extends Generic>({
   onEdit,
   onChange,
   onDelete,
+  data,
 }: WorkInputProps<T>) {
   const [id, setId] = useState<number>(0)
 
@@ -39,6 +41,13 @@ function InputController<T extends Generic>({
   const [form, setForm] = useState<T>(initialFormState)
   const [entries, setEntries] = useState<Entry[]>([])
   const [inEdit, setInEdit] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (data)
+      setEntries(
+        data.map((item) => ({ name: Object.values(item)[1], id: item.id }))
+      )
+  }, [data])
 
   //handles for the entry component
   const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -79,7 +88,6 @@ function InputController<T extends Generic>({
     } else {
       setId(id + 1)
       onAdd({ ...form, id: id })
-      setEntries([...entries, { name: Object.values(form)[1], id: id }])
     }
     setForm(initialFormState)
   }
@@ -89,10 +97,11 @@ function InputController<T extends Generic>({
     id: input.value,
     value: form[input.value],
     onChange: handleInputChange,
-    required: input.required ?? false
+    required: input.required ?? false,
   }))
 
-  const heading = inputValues[0].value === 'company' ? 'Work Experience' : 'Education'
+  const heading =
+    inputValues[0].value === 'company' ? 'Work Experience' : 'Education'
 
   return (
     <>
@@ -106,8 +115,8 @@ function InputController<T extends Generic>({
         />
       ))}
       <section className='inputs'>
-        <h2>{ heading }</h2>
-          <hr />
+        <h2>{heading}</h2>
+        <hr />
         <form onSubmit={handleFormSubmit}>
           {inputs.map((input) => (
             <Input key={input.id} {...input} />
@@ -121,7 +130,9 @@ function InputController<T extends Generic>({
             </aside>
           ) : (
             <aside style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button type='submit'><FaPlus /></button>
+              <button type='submit'>
+                <FaPlus />
+              </button>
             </aside>
           )}
         </form>
