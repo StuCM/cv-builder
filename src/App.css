@@ -127,3 +127,16 @@ h3 span {
 	font-style: italic;
 }
 
+.iconButton {
+	background-color: transparent;
+	padding: 0;
+	margin-left: 1.25rem;
+	color: #626262;
+}
+
+.iconButton:hover {
+	color: #202020;
+	border: none;
+	background-color: transparent;
+}
+

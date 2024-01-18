@@ -119,7 +119,7 @@ function WorkInput<T extends Generic>({
               <button type='submit'>Save</button>
             </aside>
           ) : (
-            <aside style={{ textAlign: 'right' }}>
+            <aside style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <button type='submit'>+</button>
             </aside>
           )}

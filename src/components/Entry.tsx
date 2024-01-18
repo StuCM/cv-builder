@@ -1,4 +1,5 @@
 import { MouseEventHandler } from "react";
+import { FaTrash, FaPen } from "react-icons/fa";
 
 interface EntryProps {
     name: string,
@@ -11,9 +12,9 @@ function Entry({ name, id, onChange, onDelete }: EntryProps) {
     return (
         <div className="entry" id={`${id}`}>
             <span>{ name }</span>
-            <span>
-                <button onClick={ onChange }>edit</button>
-                <button onClick={onDelete} >delete</button>
+            <span style={{display: 'flex'}}>
+                <button className='iconButton' onClick={ onChange }><FaPen /></button>
+                <button className='iconButton' onClick={onDelete} ><FaTrash /></button>
             </span>
             
         </div>
