@@ -1,8 +1,9 @@
 import './App.css'
-import React, { MouseEventHandler, useState } from 'react'
+import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { Data, Education, Work } from './types/types'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
+import { sampleData } from './data/sampleData'
 
 function App() {
   const [data, setData] = useState<Data>({
@@ -18,6 +19,11 @@ function App() {
   })
 
   const [key, setKey] = useState<number>(Date.now())
+
+  useEffect(() => {
+    setData(sampleData);
+
+  }, [])
 
   const defaultGeneral = {
     name: '',
