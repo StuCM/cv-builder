@@ -105,15 +105,6 @@ function InputController<T extends Generic>({
 
   return (
     <>
-      {entries.map((entry) => (
-        <EntryComp
-          key={entry.id}
-          name={entry.name}
-          id={entry.id}
-          onChange={handleEdit}
-          onDelete={deleteEntry}
-        />
-      ))}
       <section className='inputs'>
         <h2>{heading}</h2>
         <hr />
@@ -137,6 +128,15 @@ function InputController<T extends Generic>({
           )}
         </form>
       </section>
+      {entries.map((entry) => (
+        <EntryComp
+          key={entry.id}
+          name={entry.name}
+          id={entry.id}
+          onChange={handleEdit}
+          onDelete={deleteEntry}
+        />
+      ))}
     </>
   )
 }
