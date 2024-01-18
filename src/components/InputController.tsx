@@ -1,144 +1,144 @@
-import { MouseEventHandler, useEffect, useState } from 'react'
-import { Entry } from '../types/types'
-import Input, { InputProps } from './Input'
-import EntryComp from './Entry'
-import { FaPlus } from 'react-icons/fa6'
+import { MouseEventHandler, useEffect, useState } from 'react';
+import { Entry } from '../types/types';
+import Input, { InputProps } from './Input';
+import EntryComp from './Entry';
+import { FaPlus } from 'react-icons/fa6';
 
 interface InputValues {
-  type: string
-  value: string
-  required?: boolean
+	type: string;
+	value: string;
+	required?: boolean;
 }
 
-type Generic = { [key: string]: any }
+type Generic = { [key: string]: any };
 interface WorkInputProps<T extends Generic> {
-  inputValues: InputValues[]
-  onAdd: (item: T) => void
-  onEdit: (item: T) => void
-  onChange: (event: React.MouseEvent<HTMLButtonElement>) => T
-  onDelete: MouseEventHandler<HTMLButtonElement>
-  data: T[]
+	inputValues: InputValues[];
+	onAdd: (item: T) => void;
+	onEdit: (item: T) => void;
+	onChange: (event: React.MouseEvent<HTMLButtonElement>) => T;
+	onDelete: MouseEventHandler<HTMLButtonElement>;
+	data: T[];
 }
 
 function InputController<T extends Generic>({
-  inputValues,
-  onAdd,
-  onEdit,
-  onChange,
-  onDelete,
-  data,
+	inputValues,
+	onAdd,
+	onEdit,
+	onChange,
+	onDelete,
+	data,
 }: WorkInputProps<T>) {
-  const [id, setId] = useState<number>(0)
+	const [id, setId] = useState<number>(0);
 
-  const initialFormState: T = inputValues.reduce(
-    (obj, input) => {
-      obj[input.value] = ''
-      return obj
-    },
-    { id: 0 } as any
-  ) as T
+	const initialFormState: T = inputValues.reduce(
+		(obj, input) => {
+			obj[input.value] = '';
+			return obj;
+		},
+		{ id: 0 } as any,
+	) as T;
 
-  const [form, setForm] = useState<T>(initialFormState)
-  const [entries, setEntries] = useState<Entry[]>([])
-  const [inEdit, setInEdit] = useState<boolean>(false)
+	const [form, setForm] = useState<T>(initialFormState);
+	const [entries, setEntries] = useState<Entry[]>([]);
+	const [inEdit, setInEdit] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (data)
-      setEntries(
-        data.map((item) => ({ name: Object.values(item)[1], id: item.id }))
-      )
-  }, [data])
+	useEffect(() => {
+		if (data)
+			setEntries(
+				data.map(item => ({ name: Object.values(item)[1], id: item.id })),
+			);
+	}, [data]);
 
-  //handles for the entry component
-  const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const updatedInput = onChange(e)
-    if (!updatedInput) return
-    setInEdit(true)
-    setForm(updatedInput)
-  }
+	//handles for the entry component
+	const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const updatedInput = onChange(e);
+		if (!updatedInput) return;
+		setInEdit(true);
+		setForm(updatedInput);
+	};
 
-  const deleteEntry = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const id = e.currentTarget.closest('div')?.id
-    console.log(id)
-    setEntries(entries.filter((entry) => entry.id !== parseInt(id!)))
-    onDelete(e)
-  }
+	const deleteEntry = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const id = e.currentTarget.closest('div')?.id;
+		console.log(id);
+		setEntries(entries.filter(entry => entry.id !== parseInt(id!)));
+		onDelete(e);
+	};
 
-  //handles for the input components
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    e.preventDefault()
-    const { id, value } = e.target
-    setForm((prevState) => ({ ...prevState, [id]: value }))
-  }
+	//handles for the input components
+	const handleInputChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+	) => {
+		e.preventDefault();
+		const { id, value } = e.target;
+		setForm(prevState => ({ ...prevState, [id]: value }));
+	};
 
-  const cancelEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    setForm(initialFormState)
-    setInEdit(false)
-  }
+	const cancelEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+		setForm(initialFormState);
+		setInEdit(false);
+	};
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-    if (inEdit) {
-      onEdit(form)
-      setInEdit(false)
-    } else {
-      setId(id + 1)
-      onAdd({ ...form, id: id })
-    }
-    setForm(initialFormState)
-  }
+	const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+		if (inEdit) {
+			onEdit(form);
+			setInEdit(false);
+		} else {
+			setId(id + 1);
+			onAdd({ ...form, id: id });
+		}
+		setForm(initialFormState);
+	};
 
-  const inputs: InputProps[] = inputValues.map((input) => ({
-    type: input.type,
-    id: input.value,
-    value: form[input.value],
-    onChange: handleInputChange,
-    required: input.required ?? false,
-  }))
+	const inputs: InputProps[] = inputValues.map(input => ({
+		type: input.type,
+		id: input.value,
+		value: form[input.value],
+		onChange: handleInputChange,
+		required: input.required ?? false,
+	}));
 
-  const heading =
-    inputValues[0].value === 'company' ? 'Work Experience' : 'Education'
+	const heading =
+		inputValues[0].value === 'company' ? 'Work Experience' : 'Education';
 
-  return (
-    <>
-      <section className='inputs'>
-        <h2>{heading}</h2>
-        <hr />
-        <form onSubmit={handleFormSubmit}>
-          {inputs.map((input) => (
-            <Input key={input.id} {...input} />
-          ))}
-          {inEdit ? (
-            <aside style={{ textAlign: 'right' }}>
-              <button type='button' onClick={cancelEdit}>
-                Cancel
-              </button>
-              <button type='submit'>Save</button>
-            </aside>
-          ) : (
-            <aside style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button type='submit'>
-                <FaPlus />
-              </button>
-            </aside>
-          )}
-        </form>
-      </section>
-      {entries.map((entry) => (
-        <EntryComp
-          key={entry.id}
-          name={entry.name}
-          id={entry.id}
-          onChange={handleEdit}
-          onDelete={deleteEntry}
-        />
-      ))}
-    </>
-  )
+	return (
+		<>
+			<section className='inputs'>
+				<h2>{heading}</h2>
+				<hr />
+				<form onSubmit={handleFormSubmit}>
+					{inputs.map(input => (
+						<Input key={input.id} {...input} />
+					))}
+					{inEdit ? (
+						<aside style={{ textAlign: 'right' }}>
+							<button type='button' onClick={cancelEdit}>
+								Cancel
+							</button>
+							<button type='submit'>Save</button>
+						</aside>
+					) : (
+						<aside style={{ display: 'flex', justifyContent: 'flex-end' }}>
+							<button type='submit'>
+								<FaPlus />
+							</button>
+						</aside>
+					)}
+				</form>
+			</section>
+			{entries.map(entry => (
+				<EntryComp
+					key={entry.id}
+					name={entry.name}
+					id={entry.id}
+					onChange={handleEdit}
+					onDelete={deleteEntry}
+				/>
+			))}
+		</>
+	);
 }
 
-export default InputController
+export default InputController;
