@@ -44,6 +44,7 @@
 	font-weight: 400;
 	font-size: 1.75rem;
 	margin-top: 0.3rem;
+	margin-bottom: 1rem;
 }
 
 .infoBar {
@@ -79,6 +80,7 @@
 .smallFont {
 	font-size: 0.9rem;
 	line-height: 1.2rem;
+	margin-bottom: 1rem;
 }
 
 .itemHeader {

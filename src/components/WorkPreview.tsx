@@ -15,7 +15,7 @@ function WorkPreview({ work }: WorkPreviewProps) {
   return (
     <>
       {work.length !== 0 && (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
           <h2>Experience</h2>
           <hr style={{ flexGrow: 1, marginLeft: '10px' }} />
         </div>
