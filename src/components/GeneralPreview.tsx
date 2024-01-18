@@ -12,16 +12,22 @@ function GeneralPreview({
     <section>
       <h1>{name}</h1>
       <h2 className='position'>{position}</h2>
-      <div className='infoBar'>
-        <div>
-          <FaEnvelope style={{marginRight: '0.5rem'}} />
-          <span>{email}</span>
+      {!email && !phone ? null : (
+        <div className='infoBar'>
+          {email && (
+            <div>
+              <FaEnvelope style={{ marginRight: '0.5rem' }} />
+              <span>{email}</span>
+            </div>
+          )}
+          {phone && (
+            <div>
+              <FaPhone style={{ marginRight: '0.5rem' }} />
+              <p>{phone}</p>
+            </div>
+          )}
         </div>
-        <div>
-          <FaPhone style={{marginRight: '0.5rem'}} />
-          <p>{phone}</p>
-        </div>
-      </div>
+      )}
       <p className='smallFont'>{description}</p>
     </section>
   )
