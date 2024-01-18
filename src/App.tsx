@@ -34,6 +34,28 @@ function App() {
     setData({ ...data, education: newEducation })
   }
 
+  const handleEditEducation = (education: Education) => {
+    const index = data.education.findIndex((e) => e.id === education.id);
+    const newEducation = [...data.education];
+    newEducation[index] = education;
+    setData({...data, education: newEducation });
+ }
+
+ const handleChangeEducation = (event: React.MouseEvent<HTMLElement>) => {
+   const id: string | undefined = event.currentTarget.closest('div')?.id;
+   if(!id) return;
+   const parsedId = parseInt(id);
+   return data.education.find((e) => e.id === parsedId);
+ }
+
+ const handleDeleteEducation: MouseEventHandler = (event: React.MouseEvent<HTMLElement>) => {
+   const id: string | undefined = event.currentTarget.closest('div')?.id;
+   if(!id) return;
+   const parsedId = parseInt(id);
+   const newWork = data.education.filter((w) => w.id !== parsedId);
+   setData({...data, education: newWork });
+ }
+
   const handleAddWork = (work: Work) => {
     const newWork = [...data.work, work];
     setData({...data, work: newWork })
@@ -64,6 +86,9 @@ function App() {
   const handlers = {
     generalInputChange: handleGeneralChange,
     educationAdd: handleAddEducation,
+    educationEdit: handleEditEducation,
+    educationChange: handleChangeEducation,
+    educationDelete: handleDeleteEducation,
     workAdd: handleAddWork,
     workEdit: handleEditWork,
     workChange: handleChangeWork,

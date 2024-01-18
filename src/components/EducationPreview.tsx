@@ -12,7 +12,7 @@ function EducationPreview({ education }: EducationPreviewProps) {
         <>
             <h2>Education</h2>
             {education?.map((ed:Education) => (
-            <div>
+            <div key={ed.id}>
                 <p>{ed.school}</p>
                 <p>{ed.degree}</p>
                 <p>{convertDate(ed.start)}</p>
