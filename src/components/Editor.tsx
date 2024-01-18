@@ -1,12 +1,11 @@
 import GeneralInput from "./GeneralInput"
-import EducationInput from "./EducationInput"
 import { Education, Work } from "../types/types"
 import InputController from "./InputController"
 import { MouseEventHandler } from "react"
 
 interface EditorProps {
     handlers: {
-        generalInputChange: ((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void) | undefined
+        generalInputChange: ((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void)
         educationAdd: (education: Education) => void
         educationEdit: (education: Education) => void
         educationDelete: MouseEventHandler

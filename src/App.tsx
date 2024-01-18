@@ -21,6 +21,23 @@ function App() {
     console.log(data.work)
   }, [data.work])
 
+  const defaultEducation: Education = {
+    id: 0,
+    school: '',
+    degree: '',
+    start: '',
+    end: '',
+  }
+
+  const defaultWork: Work = {
+    id: 0,
+    company: '',
+    position: '',
+    start: '',
+    end: '',
+    summary: '',
+  }
+
   const handleGeneralChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -43,9 +60,10 @@ function App() {
 
  const handleChangeEducation = (event: React.MouseEvent<HTMLElement>) => {
    const id: string | undefined = event.currentTarget.closest('div')?.id;
-   if(!id) return;
+   if(!id) return defaultEducation;
    const parsedId = parseInt(id);
-   return data.education.find((e) => e.id === parsedId);
+   const education = data.education.find((e) => e.id === parsedId);
+   return education ? education : defaultEducation;
  }
 
  const handleDeleteEducation: MouseEventHandler = (event: React.MouseEvent<HTMLElement>) => {
@@ -70,9 +88,10 @@ function App() {
 
   const handleChangeWork = (event: React.MouseEvent<HTMLElement>) => {
     const id: string | undefined = event.currentTarget.closest('div')?.id;
-    if(!id) return;
+    if(!id) return defaultWork;
     const parsedId = parseInt(id);
-    return data.work.find((w) => w.id === parsedId);
+    const work = data.work.find((w) => w.id === parsedId);
+    return work ? work : defaultWork;
   }
 
   const handleDeleteWork: MouseEventHandler = (event: React.MouseEvent<HTMLElement>) => {
