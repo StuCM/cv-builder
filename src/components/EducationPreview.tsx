@@ -21,7 +21,7 @@ function EducationPreview({ education }: EducationPreviewProps) {
         </div>
       )}
       {education?.map((ed: Education) => (
-        <div key={ed.id}>
+        <div style={{marginBottom: '1rem'}} key={ed.id}>
           <div className='dates'>
             <h4>{ed.school}</h4>
             <span>

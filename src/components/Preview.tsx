@@ -8,8 +8,8 @@ function Preview({ general, education, work }:Data) {
         <div className="preview">
             <section className="a4Page">
                 <GeneralPreview {...general} />
-                <EducationPreview education={education} />
                 <WorkPreview work={work} />
+                <EducationPreview education={education} />
             </section>
         </div>
     )

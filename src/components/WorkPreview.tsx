@@ -21,7 +21,7 @@ function WorkPreview({ work }: WorkPreviewProps) {
         </div>
       )}
       {work?.map((job: Work) => (
-        <div key={job.id}>
+        <div style={{marginBottom: '1rem'}} key={job.id}>
           <div className='itemHeader'>
             <div>
               <h3>
